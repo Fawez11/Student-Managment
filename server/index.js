@@ -10,10 +10,10 @@ const db = mysql.createConnection({
   user: "root",
   host: "localhost",
   password: "root",
-  database: " managestudent",
+  database: " managestudents",
 });
 
-app.post("./create", (req, res) => {
+app.post("/create", (req, res) => {
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
   const Age = req.body.Age;
@@ -30,7 +30,8 @@ app.post("./create", (req, res) => {
     }
   );
 });
-app.get("./student",(req,res)=>{
+app.get("/student",(req,res)=>{
+  console.log("i m inside get")
 db.query ("SELECT * FROM student",(err,result) => {
     if(err){
         console.log(err);
@@ -66,6 +67,6 @@ app.delete("/delete/:id", (req, res) => {
   });
 });
 
-app.listen(4000, () => {
+app.listen(3308,() => {
   console.log("run run run on port 4000");
 });

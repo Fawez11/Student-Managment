@@ -9,6 +9,7 @@ function App() {
   const [studentList,setStudentList]= useState([])
 
   const addStudent = () => {
+    console.log(firstName);
   
      axios.post(`http://localhost:4000/create`, { 
       firstName : firstName, 

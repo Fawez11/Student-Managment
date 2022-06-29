@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS managestudent;
-CREATE DATABASE managestudent;
-USE managestudent;
+DROP DATABASE IF EXISTS managestudents;
+CREATE DATABASE managestudents;
+USE managestudents;
 
-DROP TABLE IF EXISTS student;
+
 
 CREATE TABLE student (
   id INTEGER UNIQUE AUTO_INCREMENT,
@@ -10,5 +10,4 @@ CREATE TABLE student (
   lastName VARCHAR(140),
   Age VARCHAR(140),
   PRIMARY KEY (id)
-)
-INSERT INTO student (firstName,lastName,Age) VALUES("fawez","ferjaoui",28);
+);
