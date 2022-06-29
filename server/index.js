@@ -39,6 +39,33 @@ db.query ("SELECT * FROM student",(err,result) => {
     }
 }) 
 })
-app.listen(3001, () => {
-  console.log("run run run on port 3001");
+app.put("/update", (req, res) => {
+  const id = req.body.id;
+  const Age= req.body.Age;
+  db.query(
+    "UPDATE student SET wage = ? WHERE id = ?",
+    [Age, id],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
+app.delete("/delete/:id", (req, res) => {
+  const id = req.params.id;
+  db.query("DELETE FROM student WHERE id = ?", id, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.listen(4000, () => {
+  console.log("run run run on port 4000");
 });

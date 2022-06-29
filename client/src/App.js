@@ -1,6 +1,6 @@
 import "./App.css";
 import { useState } from "react";
-import Axios from "axios";
+import axios from "axios";
 
 function App() {
   const [firstName, setfirstName] = useState("");
@@ -10,7 +10,7 @@ function App() {
 
   const addStudent = () => {
   
-    Axios.post("http://localhost:3001/create", { 
+     axios.post(`http://localhost:4000/create`, { 
       firstName : firstName, 
       lastName:lastName,
       Age:Age ,
@@ -20,8 +20,8 @@ function App() {
   };
 
     const getStudent = () =>{
-      Axios.get("http://localhost:3001/student").then((response)=>{
-        console.log(response);
+      axios.get("http://localhost:4000/student").then((response)=>{
+       setStudentList(response.data);
       })
     }
      
@@ -53,6 +53,15 @@ function App() {
       </div>
        <div className="show">
        <button onClick={getStudent}>Show student</button>
+       {studentList.map((val,key) =>{
+         return <div className="student"> 
+         <h3> firstName:{val.firstName}</h3>
+         <h3>lastName:{val.lastName}</h3>
+         <h3>Age:{val.Age}</h3>
+         
+         
+         </div>
+       })}
        </div>
      
      
