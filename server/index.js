@@ -5,12 +5,15 @@ const cors = require ("cors")
 
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 
 const db = mysql.createConnection({
   user: "root",
   host: "localhost",
+  port: 3306,
   password: "root",
-  database: " managestudents",
+  database: "managestudents",
 });
 
 app.post("/create", (req, res) => {
@@ -23,7 +26,7 @@ app.post("/create", (req, res) => {
     [firstName, lastName, Age],
     (err, result) => {
       if (err) {
-        console.log(err);
+        console.log(err,firstName,lastName,Age);
       } else {
         res.send("done with values");
       }
@@ -44,7 +47,7 @@ app.put("/update", (req, res) => {
   const id = req.body.id;
   const Age= req.body.Age;
   db.query(
-    "UPDATE student SET wage = ? WHERE id = ?",
+    "UPDATE student SET Age = ? WHERE id = ?",
     [Age, id],
     (err, result) => {
       if (err) {

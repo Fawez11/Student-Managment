@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import axios from "axios";
 
 function App() {
@@ -9,14 +9,14 @@ function App() {
   const [studentList,setStudentList]= useState([])
 
   const addStudent = () => {
-  
+    console.log(firstName);
   
      axios.post(`http://localhost:4000/create`, { 
       firstName : firstName, 
       lastName:lastName,
       Age:Age ,
-      }).then(() =>{
-        console.log("YEAH BB!");
+    }).then(() =>{
+      console.log("YEAH BB!");
       })
   };
 
@@ -26,9 +26,10 @@ function App() {
       })
     }
      
-  return (
+    return (
+    <>
     <div className="App">
-      <div className="info">
+    <div className="info">
         <label>firstName</label>
         <input
           type={"text"}
@@ -52,10 +53,15 @@ function App() {
         />
         <button onClick={addStudent}>Add students</button>
       </div>
-       <div className="show">
+       
+     
+     
+     
+    </div>
+    <div className="show">
        <button onClick={getStudent}>Show student</button>
        {studentList.map((val,key) =>{
-         return <div className="student"> 
+         return <div key={key} className="student"> 
          <h3> firstName:{val.firstName}</h3>
          <h3>lastName:{val.lastName}</h3>
          <h3>Age:{val.Age}</h3>
@@ -64,10 +70,7 @@ function App() {
          </div>
        })}
        </div>
-     
-     
-     
-    </div>
+            </>
   );
 }
 
